@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/nav_connexion">
 
     <fragment
         android:id="@+id/navigation_home"
@@ -18,8 +18,26 @@
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.tp4.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/nav_connexion"
+        android:name="com.example.tp4.ui.connexion.ConnexionFragment"
+        android:label="@string/connexion"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_nav_connexion_to_nav_inscription"
+            app:destination="@id/nav_details" />
+        <action
+            android:id="@+id/action_nav_connexion_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_details"
+        android:name="com.example.tp4.ui.inscription.InscriptionFragment"
+        android:label="@string/inscription"
+        tools:layout="@layout/fragment_dashboard">
+        <action
+            android:id="@+id/action_nav_details_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
+
 </navigation>
