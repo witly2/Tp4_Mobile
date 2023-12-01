@@ -4,4 +4,7 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="connexion">Connexion</string>
     <string name="inscription">Inscription</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
 </resources>
