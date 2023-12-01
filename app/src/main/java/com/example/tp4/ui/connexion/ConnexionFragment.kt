@@ -99,7 +99,7 @@ class ConnexionFragment: Fragment(),View.OnClickListener {
                     // Firebase User est un user connecté
                     val user = mAuth!!.currentUser
                     Toast.makeText(
-                        requireContext(), "Connexion réussie",
+                        requireContext(), "Bienvenue ${user!!.displayName}",
                         Toast.LENGTH_SHORT,
                     ).show()
                     updateUi(user)

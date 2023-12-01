@@ -82,6 +82,11 @@ class ConnexionInscriptionActivity: AppCompatActivity() {
         )*/
         startActivity(Intent(this, MainActivity::class.java))
     }
-}
+
+  /*  override fun onStop() {
+        super.onStop()
+        FirebaseAuth.getInstance().signOut()
+    }
+*/}
 
 
