@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "218055685072",
+    "project_id": "tp4wilypierre",
+    "storage_bucket": "tp4wilypierre.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:218055685072:android:98a079d6d254c8c23dffd5",
+        "android_client_info": {
+          "package_name": "com.example.tp4"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANFZsxJVN-yTIM5XW5NAxVp9KXH2qFqGk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
