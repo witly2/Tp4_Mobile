@@ -8,10 +8,10 @@
             android:id="@+id/nav_connexion"
             android:icon="@drawable/ic_connexion"
             android:title="@string/connexion" />
-       <!-- <item
-            android:id="@+id/nav_details"
-            android:icon="@drawable/ic_inscription"
-            android:title="@string/inscription" />
--->
+        <!-- <item
+             android:id="@+id/nav_details"
+             android:icon="@drawable/ic_inscription"
+             android:title="@string/inscription" />
+ -->
     </group>
 </menu>

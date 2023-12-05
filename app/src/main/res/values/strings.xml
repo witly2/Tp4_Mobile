@@ -1,10 +1,24 @@
 <resources>
     <string name="app_name">Tp4</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
+    <string name="title_home">Items</string>
+    <string name="title_dashboard">Ajout item</string>
     <string name="connexion">Connexion</string>
     <string name="inscription">Inscription</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="num_ro_photo">Numéro photo</string>
+    <string name="test">Test</string>
+    <string name="description">Description</string>
+    <string name="_0">0</string>
+    <string name="prix">Prix :</string>
+    <string name="choix">---Choix---</string>
+
 </resources>
+
+<!--<string name="title_home">Magasin</string>-->
+<!--<string name="title_panier">Panier</string>-->
+
+<!--<string name="choix">-&#45;&#45;Choix-&#45;&#45;</string>-->
+<!--<string name="action_edit">Éditer</string>-->
+<!--<string name="action_delete">Supprimer</string>-->
