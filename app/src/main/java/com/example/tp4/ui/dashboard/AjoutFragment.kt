@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
+import androidx.core.app.NotificationCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
@@ -145,6 +146,13 @@ class AjoutFragment : Fragment() , View.OnClickListener{
                     .add(item)
                     .addOnSuccessListener { Log.d("TAG", "DocumentSnapshot added with ID: ") }
                     .addOnFailureListener { e -> Log.w("TAG", "Error adding document", e) }
+//
+//                var builder = NotificationCompat.Builder(this, App.CHANNEL_1_ID)
+//                    .setSmallIcon(R.drawable.ic_android)
+//                    .setContentTitle(title)
+//                    .setContentText(message)
+//                    .setContentIntent(pendingIntent) // lance l'activité MainActivity si on clic sur la notif
+//                    .setAutoCancel(true)
 
                 //Retour sur le fragment Home
                 // Obtenez le NavController
