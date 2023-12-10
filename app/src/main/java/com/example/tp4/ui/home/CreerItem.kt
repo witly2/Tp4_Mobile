@@ -27,7 +27,7 @@ class CreerItem():DialogFragment() {
     lateinit var description: EditText
     lateinit var prix: EditText
     var descriptionV: String? = null
-    var idV: Int = 0
+    var idV: String? = null
     var quantite=0
 
     var db = FirebaseFirestore.getInstance()
@@ -62,7 +62,7 @@ class CreerItem():DialogFragment() {
         // Titre
         arguments?.let {
             val name = it.getString("nom")
-            idV = it.getInt("id")
+            idV = it.getString("id")
             descriptionV = it.getString("description")
             quantite = it.getInt("qte")
             val categorieV = it.getString("categorie")
@@ -123,7 +123,15 @@ class CreerItem():DialogFragment() {
                 }
                 else {
 
-                    Cr.document(idV.toString()).update("description",item)
+                    Cr.document(idV!!).update(
+                        mapOf(
+                            "nom" to item.nom,
+                            "description" to item.description,
+                            "categorie"   to item.categorie,
+                            "date" to date,
+                            "prix" to item.prix
+                        )
+                    )
                         .addOnSuccessListener {
                             // La mise à jour a réussi
                             Log.d(TAG, "Mise à jour réussie!")
@@ -131,14 +139,17 @@ class CreerItem():DialogFragment() {
                         .addOnFailureListener { e ->
                             // La mise à jour a échoué
                             Log.w(TAG, "Erreur lors de la mise à jour", e)
+                            Toast.makeText(requireContext(), "Le vendeur n'a pas été créé. Informations insuffisantes ou mal entrées", Toast.LENGTH_SHORT).show()
                         }
                 }
 
             }
             ?.setNegativeButton("Annuler") { dialog, id ->
+
                 getDialog()?.cancel()
             }
         if (builder != null) {
+
             return builder.create()
         }
         return super.onCreateDialog(savedInstanceState)
