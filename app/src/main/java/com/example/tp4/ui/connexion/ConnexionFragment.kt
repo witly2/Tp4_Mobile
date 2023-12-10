@@ -52,7 +52,7 @@ class ConnexionFragment: Fragment(),View.OnClickListener {
             //Rediriger vers l'accueil
 
             Toast.makeText(requireContext(), "Vous êtes déjà connecté.", Toast.LENGTH_SHORT).show()
-            updateUi(mAuth!!.currentUser)
+            updateUi()
         }
 
 
@@ -102,15 +102,9 @@ class ConnexionFragment: Fragment(),View.OnClickListener {
                         requireContext(), "Bienvenue ${user!!.displayName}",
                         Toast.LENGTH_SHORT,
                     ).show()
-                    updateUi(user)
+                    updateUi()
 
-                }/* else {
-                    Log.w(
-                        SignInActivity.Companion.TAG,
-                        "signInWithEmail:failure",
-                        task.exception
-                    )
-                }*/
+                }
             } // Ce callback nous permet d'avoir accès aux exceptions
             // Important, car permet l'identification exacte de l'erreur à la connexion
             .addOnFailureListener { e ->
@@ -122,15 +116,9 @@ class ConnexionFragment: Fragment(),View.OnClickListener {
             }
     }
 
-     private fun updateUi(user: FirebaseUser?) {
-          // token retourné par Firebase : utile si on doit par la suite communiquer avec un backend tierce
-          //binding.textView5.setText("Bienvenue "+user.getIdToken(true));
-          //binding.textView5.setText("Bienvenue " + user!!.displayName)
-
-          /*if (user.isEmailVerified == true) binding.textView6.setText("Courriel vérifié") else binding.textView6.setText(
-              "Courriel non vérifié"
-          )*/
+     private fun updateUi() {
           startActivity(Intent(requireContext(), MainActivity::class.java))
+
       }
     private fun errorWithMessage(msgError:String){
         textError.setPadding(20,20,20,20)

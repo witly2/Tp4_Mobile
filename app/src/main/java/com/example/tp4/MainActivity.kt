@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
@@ -50,18 +51,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_home, R.id.navigation_dashboard
             )
         )
-        // Demande de permission pour les notifications
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.POST_NOTIFICATIONS
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(Manifest.permission.POST_NOTIFICATIONS),
-                1
-            )
-        }
+
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
@@ -88,7 +78,7 @@ class MainActivity : AppCompatActivity() {
                 true
 
                 // Afficher un message de log dans la console
-                Log.d("MonApplication", "Utilisateur déconnecté avec succès")
+                Toast.makeText(this, "Utilisateur déconnecté avec succès", Toast.LENGTH_SHORT).show()
 
                 true // Indique que l'action a été traitée avec succès
             }

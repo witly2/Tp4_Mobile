@@ -48,8 +48,6 @@ class HomeFragment : Fragment() {
 
 
         adapterItem = itemAdapter(itemList)
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
 
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
@@ -58,11 +56,6 @@ class HomeFragment : Fragment() {
         binding.rvItem.layoutManager= LinearLayoutManager(requireContext())
         binding.rvItem.setHasFixedSize(true)
 
-
-       // val textView: TextView = binding.rv_item
-//        homeViewModel.text.observe(viewLifecycleOwner) {
-//            textView.text = it
-//        }
 
         // Création de l'écouteur d'événement pour le RecyclerView
         // (voir la classe PersonAdapter) interface OnItemClickListenerInterface
@@ -169,11 +162,9 @@ class HomeFragment : Fragment() {
         registration!!.remove()
     }
     companion object {
-        private const val KEY_Item = "Item"
-        private const val KEY_Nom = "Nom"
-        private const val KEY_PRIORITY = "priority"
         private const val KEY_TIME = "date"
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

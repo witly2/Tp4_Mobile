@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Tp4</string>
+    <string name="app_name">Tp4_pierre_wily</string>
     <string name="title_home">Items</string>
     <string name="title_dashboard">Ajout item</string>
     <string name="connexion">Connexion</string>
@@ -15,12 +15,7 @@
     <string name="choix">---Choix---</string>
     <string name="action_edit">Éditer</string>
     <string name="action_delete">Supprimer</string>
+    <string name="message_notification">Vous avez bien ajouté un item</string>
+    <string name="titre_notification">Ajout d\'article tp4</string>
 
 </resources>
-
-<!--<string name="title_home">Magasin</string>-->
-<!--<string name="title_panier">Panier</string>-->
-
-<!--<string name="choix">-&#45;&#45;Choix-&#45;&#45;</string>-->
-<!--<string name="action_edit">Éditer</string>-->
-<!--<string name="action_delete">Supprimer</string>-->

@@ -51,7 +51,7 @@ class InscriptionFragment:Fragment() {
             //Rediriger vers l'accueil
 
             Toast.makeText(requireContext(), "Vous êtes déjà connecté.", Toast.LENGTH_SHORT).show()
-            updateUi(mAuth!!.currentUser)
+            updateUi()
         }
 
         txtViewEmail=binding.editTextTextEmail
@@ -94,21 +94,10 @@ class InscriptionFragment:Fragment() {
                                     requireContext(), "Bienvenue ${user.displayName}",
                                     Toast.LENGTH_SHORT
                                 ).show()
-                                updateUi(user)
+                                updateUi()
                             }
                         }
-                } /*else {
-                    // Échec : en cas d'échec, vérifier dans le logcat l'instance d'exception lancée
-                    Log.w(
-                        TAG,
-                        "createUserWithEmail:failure",
-                        task.exception
-                    )
-                    Toast.makeText(
-                        this@SignUpActivity, "Échec de l'Authentication.",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }*/
+                }
             }
             .addOnFailureListener { e ->
                 if(e is FirebaseAuthWeakPasswordException)
@@ -130,14 +119,7 @@ class InscriptionFragment:Fragment() {
         textError.setText(msgError)
     }
 
-    private fun updateUi(user: FirebaseUser?) {
-        // token retourné par Firebase : utile si on doit par la suite communiquer avec un backend tierce
-        //binding.textView5.setText("Bienvenue "+user.getIdToken(true));
-        //binding.textView5.setText("Bienvenue " + user!!.displayName)
-
-        /*if (user.isEmailVerified == true) binding.textView6.setText("Courriel vérifié") else binding.textView6.setText(
-            "Courriel non vérifié"
-        )*/
+    private fun updateUi() {
         startActivity(Intent(requireContext(), MainActivity::class.java))
     }
 

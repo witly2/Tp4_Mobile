@@ -1,11 +1,14 @@
 package com.example.tp4
 
+import android.Manifest
 import android.R
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.setPadding
 import androidx.drawerlayout.widget.DrawerLayout
@@ -40,15 +43,27 @@ class ConnexionInscriptionActivity: AppCompatActivity() {
 
         // Instance du service d'authentification
         mAuth = FirebaseAuth.getInstance()
-
+        // Demande de permission pour les notifications
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.POST_NOTIFICATIONS
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.POST_NOTIFICATIONS),
+                1
+            )
+        }
         // Si token user déjà valide
         if (mAuth!!.currentUser != null) {
             Log.d("***TAG", "onCreate: " + mAuth!!.currentUser)
             //Rediriger vers l'accueil
 
             Toast.makeText(this, "Vous êtes déjà connecté.", Toast.LENGTH_SHORT).show()
-            updateUi(mAuth!!.currentUser)
+            updateUi()
         }
+
 
         setSupportActionBar(binding.appBarMain.toolbar)
 
@@ -72,21 +87,11 @@ class ConnexionInscriptionActivity: AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
-    private fun updateUi(user: FirebaseUser?) {
-        // token retourné par Firebase : utile si on doit par la suite communiquer avec un backend tierce
-        //binding.textView5.setText("Bienvenue "+user.getIdToken(true));
-        //binding.textView5.setText("Bienvenue " + user!!.displayName)
-
-        /*if (user.isEmailVerified == true) binding.textView6.setText("Courriel vérifié") else binding.textView6.setText(
-            "Courriel non vérifié"
-        )*/
+    private fun updateUi() {
         startActivity(Intent(this, MainActivity::class.java))
+        finish()
     }
 
-  /*  override fun onStop() {
-        super.onStop()
-        FirebaseAuth.getInstance().signOut()
-    }
-*/}
+}
 
 

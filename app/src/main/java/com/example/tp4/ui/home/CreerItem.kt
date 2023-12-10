@@ -134,12 +134,12 @@ class CreerItem():DialogFragment() {
                     )
                         .addOnSuccessListener {
                             // La mise à jour a réussi
-                            Log.d(TAG, "Mise à jour réussie!")
+                            Toast.makeText(requireContext(), "Mise à jour réussie!", Toast.LENGTH_SHORT).show()
+
                         }
                         .addOnFailureListener { e ->
-                            // La mise à jour a échoué
-                            Log.w(TAG, "Erreur lors de la mise à jour", e)
-                            Toast.makeText(requireContext(), "Le vendeur n'a pas été créé. Informations insuffisantes ou mal entrées", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(requireContext(), "Une erreur s'est produite. Veuillez réessayer", Toast.LENGTH_SHORT).show()
+
                         }
                 }
 

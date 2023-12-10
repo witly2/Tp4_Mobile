@@ -14,9 +14,6 @@
         <action
             android:id="@+id/action_nav_connexion_to_nav_inscription"
             app:destination="@id/nav_details" />
-        <action
-            android:id="@+id/action_nav_connexion_to_navigation_home"
-            app:destination="@id/navigation_home" />
     </fragment>
 
     <fragment
@@ -24,9 +21,6 @@
         android:name="com.example.tp4.ui.inscription.InscriptionFragment"
         android:label="@string/inscription"
         tools:layout="@layout/inscription">
-        <action
-            android:id="@+id/action_nav_details_to_navigation_home"
-            app:destination="@id/navigation_home" />
     </fragment>
 
 </navigation>
