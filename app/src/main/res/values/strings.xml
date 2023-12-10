@@ -13,6 +13,8 @@
     <string name="_0">0</string>
     <string name="prix">Prix :</string>
     <string name="choix">---Choix---</string>
+    <string name="action_edit">Éditer</string>
+    <string name="action_delete">Supprimer</string>
 
 </resources>
 

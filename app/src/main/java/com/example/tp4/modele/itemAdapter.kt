@@ -16,20 +16,20 @@ class itemAdapter (private val lstItem:MutableList<Item>):
 
     // Interface pour gérer les clics sur les éléments de la liste
     // mis à disposition de toute activité instanciant l'adapter : à charge pour cette activité d'implémenter les méthodes de l'interface
-//    interface OnItemClickListenerInterface {
+    interface OnItemClickListenerInterface {
 //        fun onItemClick(itemView: View?, position: Int)
-//        fun onClickEdit(itemView: View, position: Int)
-//        fun onClickDelete(position: Int)
-//    }
-//
-//    // Objet qui instancie l'interface OnItemClickListener
-//    lateinit var listener: OnItemClickListenerInterface
-//
-//    // Cette méthode permet de passer l'implémentation de l'interface OnItemClickListener à cet adapter
-//    // Elle est appelée dans la classe MainActivity
-//    fun setOnItemClickListener(listener: OnItemClickListenerInterface) {
-//        this.listener = listener
-//    }
+        fun onClickEdit(itemView: View, position: Int)
+        fun onClickDelete(position: Int)
+    }
+
+    // Objet qui instancie l'interface OnItemClickListener
+    lateinit var listener: OnItemClickListenerInterface
+
+    // Cette méthode permet de passer l'implémentation de l'interface OnItemClickListener à cet adapter
+    // Elle est appelée dans la classe MainActivity
+    fun setOnItemClickListener(listener: OnItemClickListenerInterface) {
+        this.listener = listener
+    }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var tvName: TextView
@@ -49,10 +49,30 @@ class itemAdapter (private val lstItem:MutableList<Item>):
 //                // (parfois, le clic est détecté alors que la position n'est pas encore déterminée)
 //                if (position != RecyclerView.NO_POSITION) {
 //                    // Appelle la méthode onItemClick de l'objet qui implémente l'interface OnItemClickListener
-//                    listener.onItemClick(itemView, position);
+//                    listener.onClickEdit(itemView, position);
 //
 //                }
 //            }
+
+            itemView.setOnCreateContextMenuListener { menu, v, menuInfo ->
+                val position = adapterPosition
+                // Crée les items du menu contextuel
+                val edit: android.view.MenuItem = menu.add(0, v.id, 0, R.string.action_edit)
+                val delete: android.view.MenuItem = menu.add(0, v.id, 0, R.string.action_delete)
+                // Ajoute un écouteur d'événement sur les items du menu contextuel
+                edit.setOnMenuItemClickListener {
+                    if (position != RecyclerView.NO_POSITION) {
+                        listener.onClickEdit(itemView, position)
+                    }
+                    false
+                }
+                delete.setOnMenuItemClickListener {
+                    if (position != RecyclerView.NO_POSITION) {
+                        listener.onClickDelete(position)
+                    }
+                    false
+                }
+            }
 
              tvName= itemView.findViewById(R.id.tv_name)
              tvPrix = itemView.findViewById(R.id.tv_prix)

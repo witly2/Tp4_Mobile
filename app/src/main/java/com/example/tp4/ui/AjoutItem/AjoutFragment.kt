@@ -1,4 +1,4 @@
-package com.example.tp4.ui.dashboard
+package com.example.tp4.ui.AjoutItem
 
 import android.R
 import android.os.Bundle
@@ -11,16 +11,16 @@ import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
-import androidx.core.app.NotificationCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
 import com.example.tp4.data.categories
 import com.example.tp4.databinding.FragmentAjoutBinding
 import com.example.tp4.modele.Item
+import com.example.tp4.ui.connexion.ConnexionFragmentDirections
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.Date
-import androidx.navigation.findNavController
 
 class AjoutFragment : Fragment() , View.OnClickListener{
 
@@ -52,7 +52,7 @@ class AjoutFragment : Fragment() , View.OnClickListener{
         savedInstanceState: Bundle?
     ): View {
         val dashboardViewModel =
-            ViewModelProvider(this).get(DashboardViewModel::class.java)
+            ViewModelProvider(this).get(AjoutViewModel::class.java)
 
         _binding = FragmentAjoutBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -146,6 +146,9 @@ class AjoutFragment : Fragment() , View.OnClickListener{
                     .add(item)
                     .addOnSuccessListener { Log.d("TAG", "DocumentSnapshot added with ID: ") }
                     .addOnFailureListener { e -> Log.w("TAG", "Error adding document", e) }
+
+                val action= AjoutFragmentDirections.actionAjoutHome()
+                Navigation.findNavController(v).navigate(action)
 //
 //                var builder = NotificationCompat.Builder(this, App.CHANNEL_1_ID)
 //                    .setSmallIcon(R.drawable.ic_android)
@@ -164,4 +167,40 @@ class AjoutFragment : Fragment() , View.OnClickListener{
 
         }
     }
+
+
+//    private fun sendOnChannel1() {
+//        val title: String = binding.editTextTitle.text.toString()
+//        val message: String = binding.editTextMessage.text.toString()
+//
+//        // Création d'un intent pour lancer l'activité MainActivity
+//        // lorsque l'utilisateur clique sur la notification.
+//        val intent = Intent(this, MainActivity::class.java)
+//        /*
+//         PendingIntent est un objet d'encapsulation d'un Intent
+//         Permet à l'Intent inclus de s'exécuter même lorsque l'app n'est plus lancée
+//         Peut lancer : une activité, un broadcast, un service
+//         Ici : lancera l'application qui a envoyé la notification
+//         */
+//        val pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE)
+//
+//        // Création d'une notification.
+//        var builder = NotificationCompat.Builder(this, App.CHANNEL_1_ID)
+//            .setSmallIcon(R.drawable.ic_android)
+//            .setContentTitle(title)
+//            .setContentText(message)
+//            .setContentIntent(pendingIntent) // lance l'activité MainActivity si on clic sur la notif
+//            .setAutoCancel(true) // supprime la notif quand on clic dessus
+//            // La catégorie permet au système de déterminer comment afficher la notification
+//            // si le mode "ne pas déranger" est activé.
+//            // https://developer.android.com/develop/ui/views/notifications/build-notification#system-category
+//            .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+//
+//        // Envoi de la notification.
+//        with(NotificationManagerCompat.from(this)) {
+//            notify(1, builder.build())
+//        }
+//
+//
+//    }
 }

@@ -16,4 +16,5 @@ data class Item(
 {
     // Ajoutez un constructeur sans argument
     constructor() : this("", null, categories.Fruit, 0.0, null, 1, null)
+
 }

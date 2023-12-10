@@ -6,10 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.tp4.MainActivity
 import com.example.tp4.databinding.FragmentHomeBinding
 import com.example.tp4.modele.Item
 import com.google.firebase.firestore.FirebaseFirestore
@@ -49,6 +51,7 @@ class HomeFragment : Fragment() {
         val homeViewModel =
             ViewModelProvider(this).get(HomeViewModel::class.java)
 
+
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
@@ -60,6 +63,45 @@ class HomeFragment : Fragment() {
 //        homeViewModel.text.observe(viewLifecycleOwner) {
 //            textView.text = it
 //        }
+
+        // Création de l'écouteur d'événement pour le RecyclerView
+        // (voir la classe PersonAdapter) interface OnItemClickListenerInterface
+            val onItemClickListener: itemAdapter.OnItemClickListenerInterface =
+            object : itemAdapter.OnItemClickListenerInterface {
+
+
+                // Méthode appelée lors du clic sur le bouton Éditer
+                override fun onClickEdit(itemView: View, position: Int) {
+                    val dialog=CreerItem()
+                    val args = Bundle()
+                    var item=itemList!![position]
+                    args.putString("nom", item.nom)
+                    args.putInt("qte", item.quantite)
+
+                    args.putString("id", item.id)
+                    args.putString("description", item.description)
+                    args.putString("categorie", item.categorie.etat)
+                    args.putDouble("prix", item.prix)
+                    dialog.arguments = args
+                    // FragmentManager pour afficher le fragment de dialogue
+                    val fm: FragmentManager =  MainActivity.fm
+                    dialog.show(fm, "fragment_edit_name")
+                }
+
+                // Méthode appelée lors du clic sur le bouton Supprimer
+                override fun onClickDelete(position: Int) {
+                    //val itemPosition = viewHolder.adapterPosition
+                    adapterItem.notifyItemRemoved(position)
+
+                    // Suppression de l'enregistrement de Firebase grâce à son id
+                    Cr.document(itemList[position].id!!).delete()
+                }
+            }
+
+        adapterItem.setOnItemClickListener(onItemClickListener)
+
+
+
         return root
     }
 
