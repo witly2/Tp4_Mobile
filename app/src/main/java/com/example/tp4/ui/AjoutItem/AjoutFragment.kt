@@ -118,7 +118,7 @@ class AjoutFragment : Fragment() , View.OnClickListener{
             val description = binding.etDescription.text.toString().trim { it <= ' ' }
 
             if(nom.isNullOrEmpty()||description.isNullOrEmpty()||prix.isNullOrEmpty()||prix.toDouble()==0.0) {
-                Toast.makeText(requireContext(), "Le vendeur n'a pas été créé. Informations insuffisantes ou mal entrées", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "L'item n'a pas été créé. Informations insuffisantes ou mal entrées", Toast.LENGTH_SHORT).show()
             }
             else{
                 val item = Item("", nom =nom, categorie = categorie, prix = prix.toDouble(), date =date, quantite = 1, description = description)

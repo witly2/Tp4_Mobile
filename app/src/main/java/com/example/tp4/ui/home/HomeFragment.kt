@@ -71,7 +71,7 @@ class HomeFragment : Fragment() {
                     args.putString("nom", item.nom)
                     args.putInt("qte", item.quantite)
 
-                    args.putString("id", item.id)
+                    args.putString ("id", item.id)
                     args.putString("description", item.description)
                     args.putString("categorie", item.categorie.etat)
                     args.putDouble("prix", item.prix)

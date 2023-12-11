@@ -29,24 +29,13 @@ class App : Application() {
             notificationManager.createNotificationChannel(channel1)
 
 
-            val channel2 = NotificationChannel(
-                CHANNEL_2_ID,
-                "Channel 2",
-                NotificationManager.IMPORTANCE_MIN
-            )
-            channel2.description = "This is Channel 2"
-            val manager = getSystemService(
-                NotificationManager::class.java
-            )
-            val notificationManager2: NotificationManager =
-                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            notificationManager2.createNotificationChannel(channel2)
+
 
         }
     }
 
     companion object {
         const val CHANNEL_1_ID = "channel1"
-        const val CHANNEL_2_ID = "channel2"
+
     }
 }
